@@ -7,9 +7,8 @@
 
 /////---Sources---/////
 
-Physijs.scripts.ammo = "https://chandlerprall.github.io/Physijs/examples/js/ammo.js";
 Physijs.scripts.worker = "/js/physijs_worker.js";
-
+Physijs.scripts.ammo = "/js/ammo.js";
 
 
 
