@@ -18,7 +18,7 @@ To play Bus Derby without hosting it, you'll likely need to run a local server i
 $ npm install http-server -g
 ```
 
-Then just CD into the bus_derby directory and run:
+Then just CD into the `bus_derby` directory and run:
 
 ```
 $ http-server .
