@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="15px" viewBox="0 0 52 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>divider lines</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="round">
+        <g id="UI" transform="translate(-1642.000000, -625.000000)" fill-rule="nonzero" stroke="#272727" stroke-width="1.25">
+            <g id="buttons" transform="translate(1639.000000, 545.000000)">
+                <g id="divider-lines">
+                    <g transform="translate(4.000000, 80.000000)">
+                        <path d="M9.16666667,14.1666667 L40.8333333,14.1666667" id="line"></path>
+                        <path d="M0,7.5 L50,7.5" id="line"></path>
+                        <path d="M9.16666667,0.833333333 L40.8333333,0.833333333" id="line"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

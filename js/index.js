@@ -111,7 +111,7 @@ function Environment() {
   var platformMaterialsArray = [];
   var platformMaterialColor = new THREE.MeshLambertMaterial( { color: 0x606060 } );
   platformMaterialsArray.push( platformMaterialColor );  //(materialindex = 0)
-  var platformImage = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/asphalt_texture_2.jpg";
+  var platformImage = "./images/asphalt_texture.jpg";
   var platformTextureLoader = new THREE.TextureLoader();
   ptr = 4.5;  //platform texture repeat
   platformTextureLoader.load(platformImage, function (texture) {
@@ -175,7 +175,7 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
   var color = ( bus.platformSide == "platformLeft" ? "green" : "red" );
   var loader = new THREE.GLTFLoader();
   loader.load(
-    `https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/bus_body_${color}.glb`,
+    `./gltf/bus_body_${color}.glb`,
     function ( gltf ) {
       var scale = 5.6;  
       bus.body = gltf.scene.children[0]; 
@@ -201,7 +201,7 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
   var wi = 1;  //wheel width
   var segments = 50;  //wheel cylinder segments (pie slices)
   var busWheelMaterialsArray = [];
-  var busWheelImage = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/bus_wheel_front_uv_fill.png";
+  var busWheelImage = "./images/bus_wheel_front_uv_fill.png";
   var busWheelGeometry = new THREE.CylinderGeometry( fr, br, wi, segments );
 
   //wheel side & back material (color only, no image)
@@ -342,8 +342,8 @@ function restartGame() {
   var greenScoreEls = document.getElementsByClassName("green_score");  
   var redScoreEls = document.getElementsByClassName("red_score");
   for ( i=0; i<2; i++) {
-    greenScoreEls[i].src = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/bus_0of3_green.svg`;
-    redScoreEls[i].src = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/bus_0of3_red.svg`;
+    greenScoreEls[i].src = "./images/bus_0of3_green.svg";
+    redScoreEls[i].src = "./images/bus_0of3_red.svg";
   };
   $("#game_win_gretchen_page_div").css("visibility", "hidden");
   $("#game_win_bertha_page_div").css("visibility", "hidden");
@@ -365,12 +365,12 @@ function declareMatchDraw() {
 function declareRoundWin(winner) {
   loadingAnimation.style.visibility = "visible";
   var cardEl = document.getElementById("round_win_card"); 
-  cardEl.src = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/bus_round_win_card_${winner.name}.svg`;
+  cardEl.src = `./images/bus_round_win_card_${winner.name}.svg`;
   var greenScoreEls = document.getElementsByClassName("green_score");  
   var redScoreEls = document.getElementsByClassName("red_score");
   for ( i=0; i<2; i++) {
-    greenScoreEls[i].src = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/bus_${Player1.score}of3_green.svg`;
-    redScoreEls[i].src = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/bus_${Player2.score}of3_red.svg`;
+    greenScoreEls[i].src = `./images/bus_${Player1.score}of3_green.svg`;
+    redScoreEls[i].src = `./images/bus_${Player2.score}of3_red.svg`;
   };
   $("#round_win_page_div").css("visibility", "visible");
   displayLoadingAnimation(1500);
@@ -514,23 +514,15 @@ window.addEventListener("resize", onWindowResize, false);
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
 
-
-// (temporarily disabled to feature buses on cp previews)
-// $("#button_play").click(function(){ 
-//   displayLoadingAnimation(1500); 
-//   $("#landing_page_div").hide();  
-//   initializeMatch(); 
-// });
 $("#landing_page_div").click(function(){ 
   displayLoadingAnimation(500); 
   $("#landing_page_div").hide();  
   initializeMatch(); 
 });
 
-
 $("#button_restart").click(function(){ 
   displayLoadingAnimation(1500); 
-  restartGame() 
+  restartGame();
 });
 
 $("#button_draw").click(function(){ 

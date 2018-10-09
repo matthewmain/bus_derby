@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="55px" viewBox="0 0 56 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>declare_draw_button</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <ellipse id="path-1" cx="24.915288" cy="24.5" rx="24.915288" ry="24.5"></ellipse>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UI" transform="translate(-1640.000000, -661.000000)" fill-rule="nonzero">
+            <g id="buttons" transform="translate(1639.000000, 545.000000)">
+                <g id="declare_draw_button">
+                    <g transform="translate(4.000000, 119.000000)">
+                        <g id="button" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse stroke="#272727" stroke-width="2.85546657" fill="#272727" fill-rule="evenodd" cx="24.915288" cy="24.5" rx="26.3430213" ry="25.9277333"></ellipse>
+                            <ellipse stroke="#F6EDD0" stroke-width="1.14218663" cx="24.915288" cy="24.5" rx="25.4863813" ry="25.0710933"></ellipse>
+                        </g>
+                        <g id="buses" transform="translate(7.000000, 15.000000)" fill="#F6EDD0">
+                            <path d="M25.3281805,2.28070175 L28.8,2.28070175 L28.8,10.2631579 C28.8,12.1525531 27.2526961,13.6842105 25.344,13.6842105 L3.456,13.6842105 C1.5473039,13.6842105 0,12.1525531 0,10.2631579 L0,2.28070175 L3.47181949,2.28070175 C3.61508344,0.997821141 4.71382455,0 6.048,0 C7.38217545,0 8.48091656,0.997821141 8.62418051,2.28070175 L20.1758195,2.28070175 C20.3190834,0.997821141 21.4178245,0 22.752,0 C24.0861755,0 25.1849166,0.997821141 25.3281805,2.28070175 Z" id="bus"></path>
+                            <path d="M33.0128776,8.00281837 L36.5936729,8.00281837 L36.5936729,16.5789474 C36.5936729,18.7975773 34.7792295,20.5936729 32.544,20.5936729 L10.656,20.5936729 C8.42077051,20.5936729 6.60632714,18.7975773 6.60632714,16.5789474 L6.60632714,8.00281837 L10.1871224,8.00281837 C10.5729708,6.67644637 11.8066195,5.72211661 13.248,5.72211661 C14.6893805,5.72211661 15.9230292,6.67644637 16.3088776,8.00281837 L26.8911224,8.00281837 C27.2769708,6.67644637 28.5106195,5.72211661 29.952,5.72211661 C31.3933805,5.72211661 32.6270292,6.67644637 33.0128776,8.00281837 Z" id="bus" stroke="#272727" stroke-width="1.18734572" stroke-linecap="round"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

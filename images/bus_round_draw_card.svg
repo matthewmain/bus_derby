@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1226px" height="775px" viewBox="0 0 1226 775" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>bus_draw_card</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="draw_screen" transform="translate(-290.000000, -267.000000)">
+            <g id="bus_draw_card" transform="translate(235.000000, 261.000000)">
+                <g id="button_play_next_round" transform="translate(57.000000, 704.000000)" fill-rule="nonzero" stroke="#272727" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.626075634" stroke-width="3.97350993">
+                    <g id="lines_r" transform="translate(852.000000, 31.000000)">
+                        <path d="M0.397350993,22.8 L369.602649,22.8" id="Line-2"></path>
+                        <path d="M0.397350993,1.2 L333.84106,1.2" id="Line-2"></path>
+                        <path d="M0.794701987,43.7986755 L334.238411,43.7986755" id="Line-2"></path>
+                    </g>
+                    <g id="lines_l" transform="translate(185.000000, 53.500000) scale(-1, 1) translate(-185.000000, -53.500000) translate(0.000000, 31.000000)">
+                        <path d="M0.397350993,22.8 L369.602649,22.8" id="Line-2"></path>
+                        <path d="M0.397350993,1.2 L333.84106,1.2" id="Line-2"></path>
+                        <path d="M0.794701987,43.7986755 L334.238411,43.7986755" id="Line-2"></path>
+                    </g>
+                </g>
+                <g id="buses" transform="translate(451.000000, 270.000000)" fill-rule="nonzero">
+                    <path d="M305.732027,27.5885998 L347.639752,27.5885998 L347.639752,124.148699 C347.639752,147.003843 328.962517,165.531599 305.922981,165.531599 L41.7167702,165.531599 C18.6772342,165.531599 0,147.003843 0,124.148699 L0,27.5885998 L41.9077245,27.5885998 C43.6370385,12.0701832 56.8997498,0 73.0043478,0 C89.1089458,0 102.371657,12.0701832 104.100971,27.5885998 L243.53878,27.5885998 C245.268094,12.0701832 258.530806,0 274.635404,0 C290.740002,0 304.002713,12.0701832 305.732027,27.5885998 Z" id="back-bus" fill="#3E6817"></path>
+                    <path d="M395.420088,101.357001 L437.7,101.357001 L437.7,200.6171 C437.7,224.968292 417.8091,244.7 393.28323,244.7 L129.077019,244.7 C104.551149,244.7 84.6602483,224.968292 84.6602483,200.6171 L84.6602483,101.357001 L126.940161,101.357001 C129.869253,85.5465687 143.830791,73.7684014 160.364596,73.7684014 C176.898401,73.7684014 190.85994,85.5465687 193.789032,101.357001 L328.571216,101.357001 C331.500309,85.5465687 345.461847,73.7684014 361.995652,73.7684014 C378.529457,73.7684014 392.490996,85.5465687 395.420088,101.357001 Z" id="front-bus" stroke="#F6EDD0" stroke-width="5.40000021" fill="#8E2707" stroke-linecap="round"></path>
+                </g>
+                <g id="header">
+                    <g id="lines_r" transform="translate(810.000000, 37.000000)" fill-rule="nonzero" stroke="#272727" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.626075634" stroke-width="3.97350993">
+                        <path d="M0.760992006,22.8 L464.602649,22.8" id="Line-2"></path>
+                        <path d="M0.760992006,1.2 L428.84106,1.2" id="Line-2"></path>
+                        <path d="M1.158343,43.7986755 L429.238411,43.7986755" id="Line-2"></path>
+                    </g>
+                    <g id="text" fill="#272727" font-family="BerlinEmailBold, Berlin Email Bold" font-size="120" font-weight="bold" letter-spacing="3.5" opacity="0.9">
+                        <text id="Draw">
+                            <tspan x="577.59" y="101">Draw!</tspan>
+                        </text>
+                    </g>
+                    <g id="lines_l" transform="translate(288.000000, 59.500000) scale(-1, 1) translate(-288.000000, -59.500000) translate(59.000000, 37.000000)" fill-rule="nonzero" stroke="#272727" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.626075634" stroke-width="3.97350993">
+                        <path d="M0.271529797,22.8 L457.602649,22.8" id="Line-2"></path>
+                        <path d="M0.271529797,1.2 L421.84106,1.2" id="Line-2"></path>
+                        <path d="M0.66888079,43.7986755 L422.238411,43.7986755" id="Line-2"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
