@@ -24,4 +24,4 @@ Then just CD into the bus_derby directory and run:
 $ http-server .
 ```
 
-You'll now have a local server running at `http://127.0.0.1:8080`
+You'll now have a local server running at `http://127.0.0.1:8080`.
