@@ -10,7 +10,7 @@ A 3D vehicle derby video game rendered in three.js and run on a physi.js physics
 
 ## Running Locally
 
-Physijs runs a web worker, which, when run locally, violates cross-origin policies of some browsers, including Chrome. To play Bus Derby locally, you'll need to run a local server instead of simply opening `index.html`. There are number of ways to do this, but a quick way is to use `http-server`. First install http-server with npm:
+Physijs runs a web worker, which, when the app is run locally, violates cross-origin policies of some browsers, including Chrome. To play Bus Derby without hosting it, you'll need to run a local server instead of simply opening `index.html`. There are number of ways to run a local server, but one quick way is to use `http-server`. To do this, first install `http-server` with npm:
 
 ```
 $ npm install http-server -g
