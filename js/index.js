@@ -10,11 +10,6 @@
 Physijs.scripts.ammo = "https://chandlerprall.github.io/Physijs/examples/js/ammo.js";
 Physijs.scripts.worker = "/js/physijs_worker.js";
 
-//Physijs.scripts.worker = "https://chandlerprall.github.io/Physijs/physijs_worker.js";
-
-// //physijs_worker.js called from HTML script (needed so worker can be used in codepen)
-// var blob = new Blob( [document.querySelector('#physijs_worker').textContent] );
-// Physijs.scripts.worker = window.URL.createObjectURL(blob);
 
 
 
