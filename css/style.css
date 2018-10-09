@@ -1,0 +1,230 @@
+body { 
+  margin: 0; 
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+canvas { 
+  width: 100%; 
+  height: 100%;
+}
+
+.display_page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #F6EDD0;
+  z-index: 1;
+}
+
+
+/* Loading Animation */
+
+#loading_animation_page {
+  visibility: hidden;
+  z-index: 2;
+}
+
+#loading_animation_div {
+  width: 25%;
+  height: 25%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#loading_animation_svg {
+   width: 100%;
+   height: 100%;
+}
+
+.loading_animation_lines { 
+   stroke: #272727;
+   stroke-width: 1%;
+   stroke-linecap: round;
+   animation-name: fade_out_in;
+   animation-iteration-count: infinite;
+   animation-duration: 900ms;
+   animation-timing-function: linear;
+}
+#loading_animation_line_1 { animation-delay: 0ms; }
+#loading_animation_line_2 { animation-delay: 175ms; }
+#loading_animation_line_3 { animation-delay: 350ms; }
+
+@keyframes fade_out_in {
+   0% { opacity: 1 }
+   20% { opacity: 0 }
+   100% { opacity: 1 }
+}
+
+#loading_animation_insignia {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+/* Landing Page */
+
+#landing_page_div {
+  background: #F9F9F9;
+  box-shadow:  0 0 120px 5px #514014 inset;
+}
+
+#landing_logo_div {
+  position: absolute;
+  width: 50%;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#logo_landing {
+  width: 100%;
+}
+
+#button_play {
+  position: absolute;
+  width: 30%;
+  top: 135%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: .9;
+}
+#button_play:hover { 
+  opacity: 1;
+  cursor: pointer;
+}
+
+
+
+/* Announcement Pages */
+
+.announcement_page {  
+  visibility: hidden;
+}
+
+.card_div {
+  position: absolute;
+  width: 60%;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card {
+  width: 100%;
+}
+
+.card_button {
+  position: absolute;
+  width: 30%;
+  top: 95.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: .9;
+}
+.card_button:hover { opacity: 1 }
+
+.round_score {
+  position: absolute;
+  height: 8%;
+  top: 66%;
+  transform: translate(-50%, -50%);
+}
+#round_score_green { left: 38%; }
+#round_score_red { left: 80%; }
+
+
+
+/* UI */
+
+#logo_div {
+  position: fixed;
+  width: 23%;
+  min-width: 115px;
+  max-width: 220px;
+  top: 6%;
+  left: 4%;
+  opacity: .8;
+}
+#logo {
+  width: 100%;
+}
+#copyright {
+  position: absolute;
+  bottom: -5%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 22%;
+}
+
+#scoreboard_div {
+  position: fixed;
+  width: 16%;
+  max-width: 160px;
+  min-width: 90px;
+  top: 6%;
+  right: 4%;
+  opacity: .8;
+}
+#scoreboard_img {
+  height: 100%;
+  width: 100%;
+}
+.board_score {
+  position: absolute;
+  height: 35%;
+  left: 76%;
+}
+#board_score_green { top: -1.5%; }
+#board_score_red { top: 60%; }
+
+#buttons_div {
+  position: fixed;
+  width: 35px;
+  height: 80px;
+  top: 47%;
+  transform: translate(0, -50%);
+  right: 4%;
+}
+.buttons_items {
+  position: absolute;
+  width: 100%;
+  opacity: .7;
+}
+.button_restart {
+  height: 33.333%;
+  top: 0;
+}
+.button_divider {
+  height: 33.333%;
+  width: 70%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: .5;
+}
+.button_draw {
+  height: 33.333%;
+  bottom: 0;
+}
+.button_restart:hover { opacity: 1; }
+.button_draw:hover { opacity: 1; }
+
+.nav {
+  position: fixed;
+  width: 12%;
+  max-width: 125px;
+  min-width: 75px;
+  bottom: 5%;
+  opacity: .85;
+}
+.left_nav { left: 4%; }
+.right_nav { right: 4%; }
