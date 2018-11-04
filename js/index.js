@@ -26,8 +26,8 @@ var backgroundColor = 0xCDD3D6;
 
 var scene, environment, camera;
 var busArray = [];
-var Player1 = { name: "Grandpa", score: 0 };
-var Player2 = { name: "Charlie", score: 0 };
+var Player1 = { name: "Gretchen", score: 0 };
+var Player2 = { name: "Bertha", score: 0 };
 var roundActive = false;
 var loadingAnimation = document.getElementById("loading_animation_page");  // "visibility:hidden" in css
 
@@ -406,14 +406,21 @@ function checkForMatchCompletion() {
   }
 }
 
-function handleKeyDown ( keyEvent ) {
+function handleKeyDown ( keyEvent, dynamicKey ) {
+  keyCode = keyEvent ? keyEvent.keyCode : dynamicKey
   // sets wheel motors; .configureAngularMotor params are:
   //   1) which_motor (as numbers matched to axes: 0 = x, 1 = y, 2 = z)
   //   2) low_limit (lower limit of the motor)
   //   3) high_limit (upper limit of the motor)
   //   4) velocity (target velocity)
   //   5) max_force (maximum force the motor can apply)
-  switch ( keyEvent.keyCode ) {
+  if (keyEvent) {
+    fire.turn = player
+    fire[player] = keyCode
+    firebase.database().ref('game').set(fire)
+  }
+
+  switch ( keyCode ) {
     // BUS 1
     // pivots wheels for steering
     case 65: case 37:  // "a" key or left arrow key (turn left)
@@ -471,8 +478,17 @@ function handleKeyDown ( keyEvent ) {
   }
 }
 
-function handleKeyUp(keyEvent){
-   switch( keyEvent.keyCode ) {
+function handleKeyUp ( keyEvent, dynamicKey ) {
+
+   keyCode = keyEvent ? keyEvent.keyCode : dynamicKey
+
+   if (keyEvent) {
+     fire.turn = player
+     fire[player] = 0
+     firebase.database().ref('game').set(fire)
+   }
+
+   switch( keyCode ) {
     // BUS 1
     //sets front wheels straight again
      case 65: case 68: case 37: case 39:
