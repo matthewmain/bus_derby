@@ -563,8 +563,6 @@ $(".button_new_game").click(function(){
   restartGame();
 });
 
-
-
 /////---Display---/////
 
 initializeMatch();

@@ -33,6 +33,15 @@ dbRef.on('value', snap => {
 
 })
 
+var test = function() {
+  console.log(busArray[0])
+  busArray[0].body.position.x = -15
+  busArray[0].body.position.y = 15
+  busArray[0].body.position.z = -35
+}
+
+//busArray[0].body.position = {x: -15, y: 15, z: -35}
+
 function selectPlayer(event, color, p){
   player = p
   opponent = p === 'p1' ? 'p2' : 'p1'
