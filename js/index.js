@@ -414,11 +414,18 @@ function handleKeyDown ( keyEvent, dynamicKey ) {
   //   3) high_limit (upper limit of the motor)
   //   4) velocity (target velocity)
   //   5) max_force (maximum force the motor can apply)
-  if (keyEvent) {
+
+  // REFACTOR AS Seperate FUNCTION
+
+  if (keyEvent && typeof fire[player].action[keyCode] !== "undefined") {
     fire.turn = player
-    fire[player] = keyCode
+    fire[player].action[keyCode] = true
+    fire[player].position = getPos(player)
     firebase.database().ref('game').set(fire)
+    last_update = Date.now()
   }
+
+  // getPos(busArray)
 
   switch ( keyCode ) {
     // BUS 1
@@ -481,11 +488,13 @@ function handleKeyDown ( keyEvent, dynamicKey ) {
 function handleKeyUp ( keyEvent, dynamicKey ) {
 
    keyCode = keyEvent ? keyEvent.keyCode : dynamicKey
-
-   if (keyEvent) {
+   // REFACTOR AS Seperate FUNCTION
+   if (keyEvent && typeof fire[player].action[keyCode] !== "undefined") {
      fire.turn = player
-     fire[player] = 0
+     fire[player].action[keyCode] = false
+     fire[player].position = getPos(player)
      firebase.database().ref('game').set(fire)
+     last_update = Date.now()
    }
 
    switch( keyCode ) {
