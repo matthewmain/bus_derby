@@ -45,7 +45,7 @@ document.body.appendChild( renderer.domElement );
 function Environment() {
   
   ///physi.js scene
-  scene = new Physijs.Scene;
+  scene = new Physijs.Scene();
   scene.setGravity(new THREE.Vector3(0, -50, 0));
 
   ///background
@@ -132,9 +132,9 @@ function Environment() {
     }
   }
   var visiblePlatform = new THREE.Mesh( platformGeometry, platformMaterialsArray );
-  visiblePlatform.name = "visiblePlatform"
-  visiblePlatform.position.set(0, -.5, 0);
-  visiblePlatform.rotation.y = .4;
+  visiblePlatform.name = "visiblePlatform";
+  visiblePlatform.position.set(0, -0.5, 0);
+  visiblePlatform.rotation.y = 0.4;
   visiblePlatform.receiveShadow = true;
   scene.add( visiblePlatform );
 
@@ -189,7 +189,7 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
   );
   
   //rotates platformLeft bus 180 degress so facing right bus
-  if ( bus.platformSide === "platformLeft" ) { bus.frame.rotation.y = Math.PI }
+  if ( bus.platformSide === "platformLeft" ) { bus.frame.rotation.y = Math.PI; }
   
   //adds all static bus parts to the scene as a single physical object
   scene.add( bus.frame );
@@ -238,10 +238,11 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
   bus.wheel_bl = new Physijs.CylinderMesh( busWheelGeometry, busWheelMaterialsArray, 300 );
   bus.wheel_br = new Physijs.CylinderMesh( busWheelGeometry, busWheelMaterialsArray, 300 );
 
+  var frontX, backX;
   if ( bus.platformSide === "platformRight" ) {
-    var frontX = bfp.x - 9.5; var backX = bfp.x + 9.5 
+    frontX = bfp.x - 9.5; backX = bfp.x + 9.5;
   } else { 
-    var frontX = bfp.x + 9.5; var backX = bfp.x - 9.5 
+    frontX = bfp.x + 9.5; backX = bfp.x - 9.5; 
   }
   configureWheel( bus.wheel_fl, { x: frontX, y: 2, z: bfp.z + 5 }, "port" );
   configureWheel( bus.wheel_fr, { x: frontX, y: 2, z: bfp.z - 5 }, "starboard" );
@@ -271,7 +272,7 @@ function playLoadingAnimationIfDocumentNotReady() {
     if (document.readyState === "complete") { 
       loadingAnimation.style.visibility = "hidden"; 
     }
-  }
+  };
 }
 
 function onWindowResize() {
@@ -319,7 +320,7 @@ function displayLoadingAnimation(milliseconds) {
 function pause(milliseconds) {
   var then = Date.now(); 
   var now;
-  do { now = Date.now() } while ( now - then < milliseconds );
+  do { now = Date.now(); } while ( now - then < milliseconds );
 }
 
 function freezeBuses() {
@@ -339,18 +340,18 @@ function restartGame() {
   for ( i=0; i<2; i++) {
     greenScoreEls[i].src = "./images/bus_0of3_green.svg";
     redScoreEls[i].src = "./images/bus_0of3_red.svg";
-  };
+  }
   $("#game_win_gretchen_page_div").css("visibility", "hidden");
   $("#game_win_bertha_page_div").css("visibility", "hidden");
   initializeMatch();
 }
 
 function aBusHasFallen() {
-  return ( busArray[0].frame.position.y < -50 || busArray[1].frame.position.y < -50 )
+  return ( busArray[0].frame.position.y < -50 || busArray[1].frame.position.y < -50 );
 }
 
 function bothBusesHaveFallen() {
-  return ( busArray[0].frame.position.y < 0 && busArray[1].frame.position.y < 0 )
+  return ( busArray[0].frame.position.y < 0 && busArray[1].frame.position.y < 0 );
 }
 
 function declareMatchDraw() {
@@ -556,6 +557,6 @@ function render() {
   camera.updateProjectionMatrix();
   renderer.render( scene, camera);
   requestAnimationFrame( render );  
-};
+}
 
 render();
