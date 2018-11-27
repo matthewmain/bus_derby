@@ -47,7 +47,6 @@ function Environment() {
   ///physi.js scene
   scene = new Physijs.Scene;
   scene.setGravity(new THREE.Vector3(0, -50, 0));
-  scene.addEventListener('update', physicsUpdate);  // keeps physics engine in sync with renderer
 
   ///background
   renderer.setClearColor (backgroundColor, 1);
@@ -274,10 +273,6 @@ function playLoadingAnimationIfDocumentNotReady() {
     }
   }
 }
-
-function physicsUpdate(){
-  scene.simulate( undefined, 2 );
-}	
 
 function onWindowResize() {
 	sceneHeight = window.innerHeight;
