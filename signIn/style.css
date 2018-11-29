@@ -1,0 +1,22 @@
+h1 {
+  margin: 5px;
+  padding: 5px;
+}
+.available, .active, .unavailable {
+  display: block;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 18px;"
+}
+.active  {
+  background-color: green;
+  color: white;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.unavailable {
+  background-color: brown;
+  color: white;
+  opacity: 0.3;
+}

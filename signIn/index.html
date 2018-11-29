@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en">
+<title> Bus Derby Sign In </title>
+<head>
+  <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 id="title"> Bus Derby Sign In </h1>
+
+<div id="sign_in_container">
+  <em> * Select user * &nbsp; or... </em> &nbsp;
+  <input id='newPlayer' placeholder="...enter new name here">
+  <button id='select_new_player'> Sign In </button>
+</div>
+
+<div id="active_players_container" style="display: none;">
+  <button id='signOut'> Sign Out </button>
+  <hr>
+  <h3> ! Challenge Active Players ! </h3>
+</div>
+
+<hr>
+<div id="availablePlayers"></div>
+<div id="unavailablePlayers"><hr>...Online</div>
+
+</body>
+<script src='config.js'></script>
+<script>
+
+window.onload = function(){
+
+  let players_local = {}
+  let user;
+  let signedIn = false
+
+  firebase.initializeApp(config);
+
+  let dbRef = firebase.database().ref().child('players')
+
+  dbRef.on('value', snap => {
+    players_local = snap.val()
+    update_user_active(signedIn)
+  })
+
+  setInterval(function(){
+    update_user_active(signedIn)
+    if (user) dbRef.child(user).set({ lastActive: Date.now() })
+  }, 2500)
+
+  select_new_player.onclick = function(){
+    selectPlayer(newPlayer.value)
+  }
+
+  signOut.onclick = function(){
+    dbRef.child(user).set({ lastActive: 0 })
+    user = ''
+    title.textContent = 'Bus Derby Sign In'
+    sign_in_container.style.display = ''
+    unavailablePlayers.style.display = ''
+    active_players_container.style.display = 'none'
+    signedIn = false
+    display_available_usernames(players_local, "availablePlayers", signedIn)
+  }
+
+  function display_available_usernames(players, parent, signedIn) {
+    const id = parent === 'unavailablePlayers' ? 'signedIn-' : 'player-'
+    parent = document.getElementById(parent)
+    for (const player in players) {
+      const pElm = document.getElementById(id+player)
+      let active = players[player].lastActive + 5000 < Date.now()
+      if (signedIn) active = !active
+      if (active && player !== user) {
+        if (!document.getElementById(id+player)) {
+          let newPlayer = document.createElement('button')
+          newPlayer.textContent = player
+          newPlayer.id = id+player
+          newPlayer.addEventListener('click', function(){ selectPlayer(player) })
+          newPlayer.className = signedIn ? 'active' : 'available'
+          if (id === 'signedIn-') newPlayer.className = 'unavailable'
+          parent.appendChild(newPlayer)
+        }
+      } else if (document.getElementById(id+player)) {
+        if (pElm) parent.removeChild(pElm)
+      }
+    }
+  }
+
+  function update_user_active(signedIn) {
+    display_available_usernames(players_local, "availablePlayers", signedIn)
+    display_available_usernames(players_local, "unavailablePlayers", true)
+  }
+
+  function selectPlayer(input){
+    old_user = user
+    user = input
+    if (user) {
+      if (!players_local[user] || players_local[user].lastActive+5000 < Date.now()) {
+        dbRef.child(user).set({ lastActive: Date.now() })
+        display_active_players()
+      } else if (old_user !== user){
+        alert("! Username is currently in use !\nTry again later, or try a different name.")
+        user = old_user
+      }
+    }
+  }
+
+  function display_active_players(){
+    sign_in_container.style.display = 'none'
+    unavailablePlayers.style.display = 'none'
+    title.innerHTML = `
+      <none style="color: #666; font-size: 20px; display: inline-block">User:</none>
+      <div style="color: brown; display: inline-block">${user}</div>
+    `
+    active_players_container.style.display = ''
+    signedIn = true
+    display_available_usernames(players_local, "availablePlayers", signedIn)
+  }
+
+}
+
+</script>
+</html>
