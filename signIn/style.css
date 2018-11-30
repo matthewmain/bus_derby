@@ -2,21 +2,68 @@ h1 {
   margin: 5px;
   padding: 5px;
 }
-.available, .active, .unavailable {
+#challenging_players_list {
+  vertical-align: top;
+}
+.col1 {
+  width: 250px;
+  display: inline-block;
+}
+.col2 {
+  width: 400px;
+  display: inline-block;
+
+}
+.border1 {
+  border-left: solid 2px black;
+}
+.fl {
+  float: right;
+}
+.inline {
+  display: inline-block;
+}
+.challenged {
+  background-color: rgba(255,155,155,0.3);
+  margin: 7px;
+  padding: 7px;
+}
+.awaiting {
+  background-color: rgba(155,155,255,0.3);
+}
+
+/* BUTTON STATES */
+.available, .unavailable, .active {
   display: block;
   margin: 5px;
   cursor: pointer;
   font-size: 18px;"
 }
-.active  {
+.unavailable {
+  background-color: brown;
+  color: white;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.active {
   background-color: green;
   color: white;
   margin: 10px;
   margin-left: auto;
   margin-right: auto;
 }
-.unavailable {
+.disableActive {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.accept {
+  background-color: green;
+  color: white;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.reject {
   background-color: brown;
   color: white;
-  opacity: 0.3;
+  cursor: pointer;
 }

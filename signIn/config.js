@@ -1,8 +1,8 @@
-let config = {
-  apiKey: "AIzaSyC0ISNtKDs1pV284bjnrOSVmtzQd7tvciI",
-  authDomain: "bus-derby-multi.firebaseapp.com",
-  databaseURL: "https://bus-derby-multi.firebaseio.com",
-  projectId: "bus-derby-multi",
-  storageBucket: "bus-derby-multi.appspot.com",
-  messagingSenderId: "420547108228"
-}
+var config = {
+  apiKey: "AIzaSyD5HqnI9jhomySxvvnk06bP-dhThUdswXY",
+  authDomain: "bus-derby-multiplayer-sign-in.firebaseapp.com",
+  databaseURL: "https://bus-derby-multiplayer-sign-in.firebaseio.com",
+  projectId: "bus-derby-multiplayer-sign-in",
+  storageBucket: "bus-derby-multiplayer-sign-in.appspot.com",
+  messagingSenderId: "749702172779"
+};
