@@ -19,7 +19,10 @@ window.onload = function(){
     if (user) dbRef.child(user+'/lastActive').set(Date.now())
     if (user && players_local[user].challenged) {
       for (const challenged in players_local[user].challenged) {
-        dbRef.child(challenged+'/challengedBy/'+user+'/lastActive').set(Date.now())
+        if (players_local[challenged].challengedBy
+        && players_local[challenged].challengedBy[user].lastActive+5000 > Date.now()) {
+          dbRef.child(challenged+'/challengedBy/'+user+'/lastActive').set(Date.now())
+        }
       }
     }
   }, 2500)
@@ -106,21 +109,23 @@ window.onload = function(){
       const challenged = elm.id.split('challenged-')
       if (challenger.length > 1) {
         const challengers = players_local[user].challengedBy
-        if ((!challengers || !challengers[challenger[1]])) {
+        if ((!challengers || !challengers[challenger[1]]
+        || challengers[challenger[1]].lastActive + 5000 < Date.now())) {
           parent.removeChild(elm)
           const challengerElm = document.getElementById('player-'+challenger[1])
           if (challenger[1] !== user) {
-            challengerElm.classList.remove('disableActive')
+            if (challengerElm) challengerElm.classList.remove('disableActive')
           }
         }
       }
       if (challenged.length > 1) {
         const challengers = players_local[user].challenged
-        if ((!challengers || !challengers[challenged[1]])) {
+        if ((!challengers || !challengers[challenged[1]]
+        || players_local[challenged[1]].lastActive + 5000 < Date.now())) {
           parent.removeChild(elm)
           const challengerElm = document.getElementById('player-'+challenged[1])
           if (challenged[1] !== user) {
-            challengerElm.classList.remove('disableActive')
+            if (challengerElm) challengerElm.classList.remove('disableActive')
           }
         }
       }
@@ -142,7 +147,7 @@ window.onload = function(){
           const challenge = document.getElementById('challenge-'+challenger)
           if (challenge) challenging_players_list.removeChild(challenge)
           const challengerElm = document.getElementById('player-'+challenger)
-          challengerElm.classList.remove('disableActive')
+          if (challengerElm) challengerElm.classList.remove('disableActive')
         }
       }
     }
@@ -189,7 +194,9 @@ window.onload = function(){
 
   function cancelChallenge(challenged, challenger, preId) {
     const challengerElm = document.getElementById('player-'+challenged)
-    if (challenged !== user) challengerElm.classList.remove('disableActive')
+    if (challenged !== user && challengerElm) {
+      challengerElm.classList.remove('disableActive')
+    }
     dbRef.child(challenger+'/challenged/'+challenged).remove()
     dbRef.child(challenged+'/challengedBy/'+challenger).remove()
     const challenge = document.getElementById(preId+challenged)
