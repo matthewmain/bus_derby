@@ -14,7 +14,7 @@ Physijs.scripts.ammo = "/js/ammo.js";
 
 /////---Settings---/////
 
-var bwf = 3.5;  //bus wheel friction 
+var bwf = 3.5;  //bus wheel friction
 var bwr = 0;  //bus wheel restitution
 var pf = 4.2;  //platform friction
 var pr = 0;  //platform restitution
@@ -23,7 +23,7 @@ var backgroundColor = 0xCDD3D6;
 
 
 /////---Initiation---/////
- 
+
 var scene, environment, camera;
 var busArray = [];
 var Player1 = { name: "gretchen", score: 0 };
@@ -43,7 +43,7 @@ document.body.appendChild( renderer.domElement );
 
 ///--Environment---///
 function Environment() {
-  
+
   ///physi.js scene
   scene = new Physijs.Scene();
   scene.setGravity(new THREE.Vector3(0, -50, 0));
@@ -75,30 +75,30 @@ function Environment() {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   ///fog
-  scene.fog = new THREE.Fog( 
-    backgroundColor, 
-    camera.position.z + 5, 
-    camera.position.z + 200 
+  scene.fog = new THREE.Fog(
+    backgroundColor,
+    camera.position.z + 5,
+    camera.position.z + 200
   );
 
   ///platform
   var platform;
   var platformDiameter = 170;
-  var platformRadiusTop = platformDiameter * 0.5;  
+  var platformRadiusTop = platformDiameter * 0.5;
   var platformRadiusBottom = platformDiameter * 0.5 + 0.2;
   var platformHeight = 1;
   var platformSegments = 85;
-  
-  var platformGeometry = new THREE.CylinderGeometry( 
-    platformRadiusTop, 
-    platformRadiusBottom, 
-    platformHeight, 
-    platformSegments 
+
+  var platformGeometry = new THREE.CylinderGeometry(
+    platformRadiusTop,
+    platformRadiusBottom,
+    platformHeight,
+    platformSegments
   );
-  
+
   //physi.js platform (invisible; provides structure) (separating three.js & physi.js improves peformance)
   var physiPlatformMaterial = Physijs.createMaterial(
-    new THREE.MeshLambertMaterial(), pf, pr  
+    new THREE.MeshLambertMaterial(), pf, pr
   );
   var physiPlatform = new Physijs.CylinderMesh(platformGeometry, physiPlatformMaterial, 0 );
   physiPlatform.name = "physicalPlatform";
@@ -143,7 +143,7 @@ function Environment() {
 
 ///---Buses---///
 function Bus(platformSide) {  //platformSide should be "platformLeft" or "platformRight"
-  
+
   var bus = this;
   bus.platformSide = platformSide;
   bus.score = 0;
@@ -166,7 +166,7 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
   bus.interior = new Physijs.BoxMesh(busInteriorGeometry, busInteriorMaterial, 5000 );
   bus.interior.name = "interior";
   bus.interior.visible = false;  //(if visible, edges stick out from rounded frame)
-  bus.interior.componentOf = "bus"; 
+  bus.interior.componentOf = "bus";
   bus.interior.position.set( 0, 5.5, 0 );
   bus.frame.add(bus.interior);
 
@@ -176,10 +176,10 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
   loader.load(
     `./gltf/bus_body_${color}.glb`,
     function ( gltf ) {
-      var scale = 5.6;  
-      bus.body = gltf.scene.children[0]; 
+      var scale = 5.6;
+      bus.body = gltf.scene.children[0];
       bus.body.name = "body";
-      bus.body.componentOf = "bus"; 
+      bus.body.componentOf = "bus";
       bus.body.rotation.set ( 0, -1.5708, 0 );
       bus.body.scale.set (scale,scale,scale);
       bus.body.position.set ( 0, 3.6, 0 );
@@ -187,13 +187,13 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
       bus.frame.add(bus.body);
     },
   );
-  
+
   //rotates platformLeft bus 180 degress so facing right bus
   if ( bus.platformSide === "platformLeft" ) { bus.frame.rotation.y = Math.PI; }
-  
+
   //adds all static bus parts to the scene as a single physical object
   scene.add( bus.frame );
-  
+
   ///wheels
   var fr = 2;  //wheel front radius
   var br = 2;  //wheel back radius
@@ -210,12 +210,12 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
 
   //wheel front material (wheel image)
   var busWheelImageLoader = new THREE.TextureLoader();
-  busWheelImageLoader.load( busWheelImage, function ( texture ) { 
-    var busWheelImageMaterial = Physijs.createMaterial( 
-      new THREE.MeshBasicMaterial({ map: texture }), bwf, bwr 
-    ); 
+  busWheelImageLoader.load( busWheelImage, function ( texture ) {
+    var busWheelImageMaterial = Physijs.createMaterial(
+      new THREE.MeshBasicMaterial({ map: texture }), bwf, bwr
+    );
     busWheelMaterialsArray.push( busWheelImageMaterial );  //(.materialindex = 1)
-  }); 
+  });
 
   //assigns each of the wheel's faces to a .materialindex
   var busWheelFaceCount = busWheelGeometry.faces.length;
@@ -241,14 +241,14 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
   var frontX, backX;
   if ( bus.platformSide === "platformRight" ) {
     frontX = bfp.x - 9.5; backX = bfp.x + 9.5;
-  } else { 
-    frontX = bfp.x + 9.5; backX = bfp.x - 9.5; 
+  } else {
+    frontX = bfp.x + 9.5; backX = bfp.x - 9.5;
   }
   configureWheel( bus.wheel_fl, { x: frontX, y: 2, z: bfp.z + 5 }, "port" );
   configureWheel( bus.wheel_fr, { x: frontX, y: 2, z: bfp.z - 5 }, "starboard" );
   configureWheel( bus.wheel_bl, { x: backX, y: 2, z: bfp.z + 5 }, "port" );
-  configureWheel( bus.wheel_br, { x: backX, y: 2, z: bfp.z - 5 }, "starboard" );   
-  
+  configureWheel( bus.wheel_br, { x: backX, y: 2, z: bfp.z - 5 }, "starboard" );
+
   ///wheel constraints
   var wheel_fl_constraint = new Physijs.DOFConstraint( bus.wheel_fl, bus.frame, bus.wheel_fl.position );
   var wheel_fr_constraint = new Physijs.DOFConstraint( bus.wheel_fr, bus.frame, bus.wheel_fr.position );
@@ -263,14 +263,14 @@ function Bus(platformSide) {  //platformSide should be "platformLeft" or "platfo
 }
 
 
-  
+
 /////---Functions---/////
 
 function playLoadingAnimationIfDocumentNotReady() {
   loadingAnimation.style.visibility = "visible";
   document.onreadystatechange = () => {
-    if (document.readyState === "complete") { 
-      loadingAnimation.style.visibility = "hidden"; 
+    if (document.readyState === "complete") {
+      loadingAnimation.style.visibility = "hidden";
     }
   };
 }
@@ -314,11 +314,11 @@ function initializeMatch() {
 
 function displayLoadingAnimation(milliseconds) {
   loadingAnimation.style.visibility = "visible";
-  setTimeout(function(){ loadingAnimation.style.visibility = "hidden"; }, milliseconds); 
+  setTimeout(function(){ loadingAnimation.style.visibility = "hidden"; }, milliseconds);
 }
 
 function pause(milliseconds) {
-  var then = Date.now(); 
+  var then = Date.now();
   var now;
   do { now = Date.now(); } while ( now - then < milliseconds );
 }
@@ -329,13 +329,13 @@ function freezeBuses() {
     busArray[i].interior.mass = 0;
     busArray[i].wheel_fl.mass = busArray[i].wheel_fr.mass = 0;
     busArray[i].wheel_bl.mass = busArray[i].wheel_br.mass = 0;
-  } 
+  }
 }
 
 function restartGame() {
   Player1.score = 0;
   Player2.score = 0;
-  var greenScoreEls = document.getElementsByClassName("green_score");  
+  var greenScoreEls = document.getElementsByClassName("green_score");
   var redScoreEls = document.getElementsByClassName("red_score");
   for ( i=0; i<2; i++) {
     greenScoreEls[i].src = "./images/bus_0of3_green.svg";
@@ -360,9 +360,9 @@ function declareMatchDraw() {
 
 function declareRoundWin(winner) {
   loadingAnimation.style.visibility = "visible";
-  var cardEl = document.getElementById("round_win_card"); 
+  var cardEl = document.getElementById("round_win_card");
   cardEl.src = `./images/bus_round_win_card_${winner.name}.svg`;
-  var greenScoreEls = document.getElementsByClassName("green_score");  
+  var greenScoreEls = document.getElementsByClassName("green_score");
   var redScoreEls = document.getElementsByClassName("red_score");
   for ( i=0; i<2; i++) {
     greenScoreEls[i].src = `./images/bus_${Player1.score}of3_green.svg`;
@@ -384,10 +384,10 @@ function declareGameWin(winner) {
 
 function checkForMatchCompletion() {
   if ( aBusHasFallen() ) {
-    freezeBuses(); 
+    freezeBuses();
     pause(1000);
     roundActive = false;
-    if ( bothBusesHaveFallen() ) { 
+    if ( bothBusesHaveFallen() ) {
       declareMatchDraw();
     } else {
       var winner = busArray[0].frame.position.y > 0 ? Player1 : Player2;
@@ -402,6 +402,7 @@ function checkForMatchCompletion() {
 }
 
 function handleKeyDown ( keyEvent ) {
+  keyEvent.keyCode = multiplayer_key_swap(keyEvent.keyCode, 'down')
   // sets wheel motors; .configureAngularMotor params are:
   //   1) which_motor (as numbers matched to axes: 0 = x, 1 = y, 2 = z)
   //   2) low_limit (lower limit of the motor)
@@ -467,6 +468,7 @@ function handleKeyDown ( keyEvent ) {
 }
 
 function handleKeyUp(keyEvent){
+  keyEvent.keyCode = multiplayer_key_swap(keyEvent.keyCode, 'up')
    switch( keyEvent.keyCode ) {
     // BUS 1
     //sets front wheels straight again
@@ -477,7 +479,7 @@ function handleKeyUp(keyEvent){
       busArray[0].wheel_fl_constraint.enableAngularMotor( 1 );
 		break;
     //stops back wheel rotation
-     case 87: case 83: case 38: case 40: 
+     case 87: case 83: case 38: case 40:
       busArray[0].wheel_bl_constraint.configureAngularMotor( 2, 0, 0, 0, 2000 );
       busArray[0].wheel_bl_constraint.enableAngularMotor( 2 );
       busArray[0].wheel_br_constraint.configureAngularMotor( 2, 0, 0, 0, 2000 );
@@ -510,36 +512,36 @@ window.addEventListener("resize", onWindowResize, false);
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
 
-$("#landing_page_div").click(function(){ 
-  displayLoadingAnimation(500); 
-  $("#landing_page_div").hide();  
-  initializeMatch(); 
+$("#landing_page_div").click(function(){
+  displayLoadingAnimation(500);
+  $("#landing_page_div").hide();
+  initializeMatch();
 });
 
-$("#button_restart").click(function(){ 
-  displayLoadingAnimation(1500); 
+$("#button_restart").click(function(){
+  displayLoadingAnimation(1500);
   restartGame();
 });
 
-$("#button_draw").click(function(){ 
-  declareMatchDraw(); 
+$("#button_draw").click(function(){
+  declareMatchDraw();
 });
 
-$("#button_play_next_round").click(function(){ 
-  displayLoadingAnimation(1500); 
-  $("#round_win_page_div").css("visibility", "hidden"); 
-  initializeMatch(); 
+$("#button_play_next_round").click(function(){
+  displayLoadingAnimation(1500);
+  $("#round_win_page_div").css("visibility", "hidden");
+  initializeMatch();
 });
 
-$("#button_replay_round").click(function(){ 
-  displayLoadingAnimation(1500); 
-  $("#round_draw_page_div").css("visibility", "hidden"); 
-  initializeMatch(); 
+$("#button_replay_round").click(function(){
+  displayLoadingAnimation(1500);
+  $("#round_draw_page_div").css("visibility", "hidden");
+  initializeMatch();
 });
 
-$(".button_new_game").click(function(){ 
-  displayLoadingAnimation(1500); 
-  restartGame(); 
+$(".button_new_game").click(function(){
+  displayLoadingAnimation(1500);
+  restartGame();
 });
 
 
@@ -556,7 +558,7 @@ function render() {
   //camera.lookAt( busArray[0].frame.position );
   camera.updateProjectionMatrix();
   renderer.render( scene, camera);
-  requestAnimationFrame( render );  
+  requestAnimationFrame( render );
 }
 
 render();
