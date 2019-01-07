@@ -401,15 +401,15 @@ function checkForMatchCompletion() {
   }
 }
 
-function handleKeyDown ( keyEvent ) {
-  keyEvent.keyCode = multiplayer_key_swap(keyEvent.keyCode, 'down')
+function handleKeyDown ( key ) {
+  console.log('handleKeyDown', key)
   // sets wheel motors; .configureAngularMotor params are:
   //   1) which_motor (as numbers matched to axes: 0 = x, 1 = y, 2 = z)
   //   2) low_limit (lower limit of the motor)
   //   3) high_limit (upper limit of the motor)
   //   4) velocity (target velocity)
   //   5) max_force (maximum force the motor can apply)
-  switch ( keyEvent.keyCode ) {
+  switch ( key ) {
     // BUS 1
     // pivots wheels for steering
     case 65: case 37:  // "a" key or left arrow key (turn left)
@@ -467,9 +467,9 @@ function handleKeyDown ( keyEvent ) {
   }
 }
 
-function handleKeyUp(keyEvent){
-  keyEvent.keyCode = multiplayer_key_swap(keyEvent.keyCode, 'up')
-   switch( keyEvent.keyCode ) {
+function handleKeyUp( key ){
+  console.log('handleKeyUp', key)
+   switch( key ) {
     // BUS 1
     //sets front wheels straight again
      case 65: case 68: case 37: case 39:
@@ -477,14 +477,14 @@ function handleKeyUp(keyEvent){
       busArray[0].wheel_fr_constraint.enableAngularMotor( 1 );
       busArray[0].wheel_fl_constraint.configureAngularMotor( 1, 0, 0, 10, 200 );
       busArray[0].wheel_fl_constraint.enableAngularMotor( 1 );
-		break;
+  	break;
     //stops back wheel rotation
      case 87: case 83: case 38: case 40:
       busArray[0].wheel_bl_constraint.configureAngularMotor( 2, 0, 0, 0, 2000 );
       busArray[0].wheel_bl_constraint.enableAngularMotor( 2 );
       busArray[0].wheel_br_constraint.configureAngularMotor( 2, 0, 0, 0, 2000 );
       busArray[0].wheel_br_constraint.enableAngularMotor( 2 );
-		break;
+  	break;
     // BUS 2
     //sets front wheels straight again
     case 76: case 222:
@@ -492,25 +492,32 @@ function handleKeyUp(keyEvent){
       busArray[1].wheel_fr_constraint.enableAngularMotor( 1 );
       busArray[1].wheel_fl_constraint.configureAngularMotor( 1, 0, 0, 10, 200 );
       busArray[1].wheel_fl_constraint.enableAngularMotor( 1 );
-		break;
+  	break;
     //stops back wheel rotation
      case 80: case 186:
       busArray[1].wheel_bl_constraint.configureAngularMotor( 2, 0, 0, 0, 2000 );
       busArray[1].wheel_bl_constraint.enableAngularMotor( 2 );
       busArray[1].wheel_br_constraint.configureAngularMotor( 2, 0, 0, 0, 2000 );
       busArray[1].wheel_br_constraint.enableAngularMotor( 2 );
-		break;
+  	break;
 	}
 }
 
 
 
 /////---Interaction---/////
-
 window.addEventListener("resize", onWindowResize, false);
 
-document.onkeydown = handleKeyDown;
-document.onkeyup = handleKeyUp;
+document.onkeydown = function(){
+  const key = _usr.id ? _key_swap(event.keyCode, _usr) : event.keyCode
+  console.log('-down-', key)
+  handleKeyDown(key)
+}
+document.onkeyup = function(){
+  const key = _usr.id ? _key_swap(event.keyCode, _usr) : event.keyCode
+  console.log('-up-', key)
+  handleKeyUp(key)
+}
 
 $("#landing_page_div").click(function(){
   displayLoadingAnimation(500);
